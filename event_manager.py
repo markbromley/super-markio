@@ -26,7 +26,9 @@ class EventManager():
         self.rapidCounterIncrementLevel = 1
 
     def register_listener(self, listener):
-        """Allows classes to subscribe to Event Manager when events are posted. N.B. All subscribers are passed all events. Event types can be used if the game is required to scale."""
+        """Allows classes to subscribe to Event Manager when events are 
+        posted. N.B. All subscribers are passed all events. Event types can 
+        be used if the game is required to scale."""
         self.listeners[listener] = 1
 
     def unregister_listener(self, listener):
@@ -85,6 +87,6 @@ class EventManager():
     def event_clear(self, event):
         """Empties the current array when the previous action's 
         associated method has finished calling, thus preventing the event 
-        Manager from blocking the game up"""
+        Manager from blocking the game up."""
         if self.currentEvent == event:
             self.currentEvent = None
