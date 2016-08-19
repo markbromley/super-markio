@@ -3,7 +3,7 @@
 from controllers import generic_controller as GenericController
 
 class GameController(GenericController.PrimaryController):
-    """This class bridges the gap between the generic controller and the game.
+    """Bridges the gap between the generic controller and the game.
     Pairing controller button names with standard game events. A dictionary of
     links between button types and game actions is provided for each controller.
     Controllers are referred to by their default specified controller system name."""
@@ -43,7 +43,7 @@ class GameController(GenericController.PrimaryController):
         self.actions = []
 
     def get_game_event_values(self):
-        """This method retrieves the current buttons being depressed by the
+        """Retrieves the current buttons being depressed by the
         controller. A pressure rating is returned with the button specifying
         the force with which the user is pressing the button."""
         self.actions = []
@@ -61,7 +61,5 @@ class GameController(GenericController.PrimaryController):
             self.eventManager.post(self.actions)
 
     def notify_event(self, event):
-        """This method is required by all subscribers of the Event Manager.
-        This is a stub method in this class, currently not performing any
-        actions."""
+        """Stub method required by all subscribers of Event Manager."""
         pass
