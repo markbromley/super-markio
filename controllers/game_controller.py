@@ -45,7 +45,7 @@ class GameController(GenericController.PrimaryController):
     def get_game_event_values(self):
         """Retrieves the current buttons being depressed by the
         controller. A pressure rating is returned with the button specifying
-        the force with which the user is pressing the button."""
+        the button force."""
         self.actions = []
         values = self.get_input_value()
         if len(values) > 0:
