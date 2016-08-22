@@ -1,5 +1,5 @@
 class GameModel():
-    """This class provides a data store for the entire game. Containing level
+    """TProvides a data store for the entire game. Contains level
     configuration, image URLs, score file URLs and level enumeration 
     dictionaries. Getter and setter methods are available as convenient manners
     for accessing level specific values. This allows a level to be set once 
@@ -108,14 +108,11 @@ class GameModel():
             ,"                Q           Q   Q        Q                                        M                Q           Q   M        Q                                        X                Q           Q   Q          "
             ,"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
         ]
-        # Below current game level
         self.currentGameLevel = 0
-        # Below number of game levels
+        # Number of game levels
         self.levels = [1, 2, 3, 4]
-        # Below adds each above level array to an array of level platforms
+        # Add each level
         self.level_platforms = [levelOne, levelTwo, levelThree, levelFour]
-        # Below dictionary allows enumeration of character sprite names 
-        # against internal letter representations
         self.characterReps = {
             "block" : "P"
             ,"worm" : "Q"
@@ -124,32 +121,28 @@ class GameModel():
             ,"castle" : "G"
             ,"mouse" : "M"
         }
-        # Below provides level background images, with key values equal to 
-        # level number minus one
+        # Provide level background images
         self.levelBackgroundImages = {
             0 : './assets/images/backgrounds/background.png'
             ,1: './assets/images/backgrounds/background_2.png'
             ,2: './assets/images/backgrounds/background_3.png'
             ,3: './assets/images/backgrounds/background_4.png'
         }
-        # Below provides level start images, with key values equal to level 
-        # number minus one
+        # Provides level start images
         self.levelStartImages = {
             0 : './assets/images/backgrounds/splash_screen.png'
             ,1 : './assets/images/backgrounds/splash_screen_2.png'
             ,2 : './assets/images/backgrounds/splash_screen_3.png'
             ,3 : './assets/images/backgrounds/splash_screen_4.png'
         }
-        # Below provides level end images, with key values equal to level 
-        # number minus one
+        # Provide level images
         self.levelEndImages = {
             0 : './assets/images/backgrounds/level_end_screen_1.png'
             ,1 : './assets/images/backgrounds/level_end_screen_2.png'
             ,2 : './assets/images/backgrounds/level_end_screen_3.png'
             ,3 : './assets/images/backgrounds/level_end_screen_4.png'
         }
-        # Below provides level score files, with key values equal to level
-        # number minus one
+        # Provides level score files
         self.levelScoreFiles = {
             0 : './models/high_scores/high_scores_1.txt'
             ,1 : './models/high_scores/high_scores_2.txt'
@@ -157,15 +150,13 @@ class GameModel():
             ,3 : './models/high_scores/high_scores_4.txt'   
         }
 
-        # Below properties externally accessed, provide access to pause 
-        # image, game over image and winning image
+        # Provide access to pause image, game over image and winning image
         self.pauseImage = './assets/images/backgrounds/paused.png'
         self.gameOverImage = './assets/images/backgrounds/game_over.png'
         self.levelEndEvent = ['CHARACTER_COLLIDE_CASTLE']
         self.levelEndEventTwo = ['CHARACTER_AT_END']
         self.gameWon = './assets/images/backgrounds/win.png'
         self.gameOverEvent = ['CHARACTER_DEAD']
-        # End of initialisation method
 
     def set_game_level(self, levelNumber):
         """Setter method - allows current level to be set, providing a value
