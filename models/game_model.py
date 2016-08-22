@@ -159,38 +159,35 @@ class GameModel():
         self.gameOverEvent = ['CHARACTER_DEAD']
 
     def set_game_level(self, levelNumber):
-        """Setter method - allows current level to be set, providing a value
-        for other methods to use to select level assets. Prevents need to
-        specify current method for every element access."""
+        """Allows current level to be set."""
         self.currentGameLevel = levelNumber - 1
 
     def get_game_level(self):
-        """Method to get the current game level being played. Returns an
-        integer value."""
+        """Returns current level."""
         return self.currentGameLevel + 1
 
     def get_level_platform(self):
-        """Getter method to access current level platform design."""
+        """Returns level platform design."""
         return self.level_platforms[self.currentGameLevel]
 
     def get_level_background_image(self):
-        """Getter method to access current level background image."""
+        """Returns current level background image."""
         return self.levelBackgroundImages[self.currentGameLevel]
 
     def get_level_start_image(self):
-        """Getter method to access current level start image."""
+        """Returns current level start image."""
         return self.levelStartImages[self.currentGameLevel]
 
     def get_level_end_image(self):
-        """Getter method to access current level end image."""
+        """Returns current level end image."""
         return self.levelEndImages[self.currentGameLevel]
 
     def get_level_score_url(self):
-        """Getter method to access current level score file."""
+        """Returns current level score file."""
         return self.levelScoreFiles[self.currentGameLevel]
 
     def get_char_representations(self, char):
-        """Getter method to return specified character's internal 
+        """Returns specified character's internal 
         representation i.e. the letter used to represent them in the 
         platform designs."""
         return self.characterReps[char]
