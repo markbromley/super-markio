@@ -187,8 +187,7 @@ class GameModel():
         return self.levelScoreFiles[self.currentGameLevel]
 
     def get_char_representations(self, char):
-        """Returns specified character's internal 
-        representation i.e. the letter used to represent them in the 
-        platform designs."""
+        """Returns specified character's internal representation i.e. the 
+        letter used to represent them in the platform designs."""
         return self.characterReps[char]
 
