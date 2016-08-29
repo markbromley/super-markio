@@ -2,17 +2,16 @@
 import pygame
 
 class BackgroundImage():
-    """Class to position and animate the background image for each level.
-    This class contains methods to blit and reposition the background."""
+    """Positions and animates the background image for each level.
+    Allows blitting and repositioning the background."""
 
     def __init__(self, screenSize, screen, background, eventManager):
         """ """
-        # Below bring this class instance to the Event Manager and register
-        # as a subscriber
+        # Register as event manager subscriber
         self.eventManager = eventManager
         self.eventManager.register_listener(self)
         self.event = None
-        # Initialise properties
+
         self.width, self.height = screenSize
         self.screen = screen
         # x is horizontal, y is vertical
@@ -31,9 +30,9 @@ class BackgroundImage():
         self.background = background
 
     def reposition_background(self):
-        """Method to reposition the background. Speed increases if the player 
+        """Repositions background. Speed increases if the player 
         sprite is to the far sides of the game to create the illusion that 
-        they are moving throughout the game."""
+        they are moving through the platform."""
         # Move slowly if at the left hand side 
         if self.event == ["CHARACTER_AT_LEFT"]:
             # print(event)
@@ -60,6 +59,5 @@ class BackgroundImage():
         self.event = None
 
     def notify_event(self, event):
-        """Method required by Event Manager to pass events to this class. 
-        Simply attaches any current event to this objects 'event' property."""
+        """Attaches any current event to this objects 'event' property."""
         self.event = event
