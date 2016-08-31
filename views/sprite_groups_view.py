@@ -1,11 +1,9 @@
-# Import all the relevant libraries
 import pygame
 
 class GenerateGroups():
-    """Class to generate sprite groups for all the individual sprites passed
-    to it. Additionally contains methods to update all sprites in all groups
-    automatically and to check for collision detection with the primary 
-    character (the first sprite supplied)."""
+    """Generates sprite groups for individual sprites. Contains methods to 
+    update all sprites in all groups and to check for collision detection with 
+    the primary character (the first sprite supplied)."""
 
     def __init__(self, screen, listOfCharactors, listOfCharactorNames, destroyOnCollision, eventManager):
         """Initialise the class, bind to the Event Manager and register as a 
