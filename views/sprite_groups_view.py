@@ -6,7 +6,7 @@ class GenerateGroups():
     the primary character (the first sprite supplied)."""
 
     def __init__(self, screen, listOfCharactors, listOfCharactorNames, destroyOnCollision, eventManager):
-        """Initialise the class, bind to the Event Manager and register as a 
+        """Bind to the Event Manager and register as a 
         subscriber. Additionally create a sprite image mask, using pygame for 
         the main character, to provide additional collision accuracy and cache 
         this mask, to prevent calling this method too often (because the method 
