@@ -1,52 +1,42 @@
 import pygame
 
 class EventManager():
-    """Allows objects within game to communicate with one another, whilst 
-    remaining primarily decoupled. i.e Acts as interaction mediator, 
-    whilst remaining heavily decoupled. Weak references are used to allow 
-    Python to garbage collect listeners that are no longer existent within 
-    the game, even if they haven't unregistered with the Event Manager. """
+    """Acts as interaction mediator. Weak references are used to allow 
+    garbage collection to remove listeners that are no longer referenced, 
+    even if they haven't unregistered with the Event Manager. """
 
     def __init__(self):
-        """Initialise Event Manager and setup the weak reference 
-        dictionary. Create an empty array for the event queue and set the 
-        current event, and score values to their defaults."""
-        # Import the dictionary class from the weakref
+        """Creates empty array for event queue and sets 
+        current event and score values to defaults."""
         from weakref import WeakKeyDictionary
-        # Create the dictionary for the subscribers
         self.listeners = WeakKeyDictionary()
         # Initialise class properties
         self.eventQueue = []
         self.currentEvent = None
         self.score = 0
 
-        # Below initialises the rapid counter material
+        # Initialise rapid counter material
         self.rapidCounterName = ''
         self.rapidCounterValue = 0
         self.rapidCounterIncrementLevel = 1
 
     def register_listener(self, listener):
-        """Allows classes to subscribe to Event Manager when events are 
-        posted. N.B. All subscribers are passed all events. Event types can 
-        be used if the game is required to scale."""
+        """Register for events. N.B. All subscribers are passed all events. 
+        Event types can be used if the game is required to scale."""
         self.listeners[listener] = 1
 
     def unregister_listener(self, listener):
-        """Allows classes registered as subscribers to remove
-        themselves from the Event Manager."""
+        """Remove listener from event manager. """
         if listener in self.listeners.keys():
             del self.listeners[listeners]
 
     def post(self, event):
-        """Allows classes to post events to the Event Manager and
-        consequently expect them to be distributed to the other 
-        Event Manager subscribers"""
+        """Post event to be distributed to the other subscribers"""
         # Send the event to the Event Manager's Rapid Counter method to check
         # if the counter's need incrementing
         self._rapid_counter_update(event)
 
         # If the event is in the list of events to be ignored, return 0 and 
-        # terminate the response 
         if (event == ["CHARACTER_COLLIDE_COIN"] or
             event == ["CHARACTER_COLLIDE_INVIS"] or
             event == ["CHARACTER_COLLIDE_CLOUD"] or
@@ -65,8 +55,7 @@ class EventManager():
                 listener.notify_event(event)
 
     def create_game_rapid_counter(self, rapidCounterName, incrementLevel):
-        """Initialises a rapid counter on the event manager. 
-        This can be used to manager a counter, such as health, time or scores 
+        """This can be used to manager a counter, such as health, time or scores 
         etc. Unlike the standard Event Manager this counter does acknowledge 
         duplicate events and as such has corresponding property differences."""
         # Initialises details
@@ -81,12 +70,11 @@ class EventManager():
             self.rapidCounterValue += self.rapidCounterIncrementLevel
 
     def get_rapid_counter_value(self, event):
-        """This method returns the current value of the Rapid Counter."""
+        """Returns current Rapid Counter value."""
         return self.rapidCounterValue
 
     def event_clear(self, event):
-        """Empties the current array when the previous action's 
-        associated method has finished calling, thus preventing the event 
-        Manager from blocking the game up."""
+        """Empties current array when previous action's method has finished,
+        thus preventing the Event Manager from blocking."""
         if self.currentEvent == event:
             self.currentEvent = None
