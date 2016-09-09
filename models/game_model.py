@@ -1,5 +1,5 @@
 class GameModel():
-    """TProvides a data store for the entire game. Contains level
+    """Provides a data store for the entire game. Contains level
     configuration, image URLs, score file URLs and level enumeration 
     dictionaries. Getter and setter methods are available as convenient manners
     for accessing level specific values. This allows a level to be set once 
@@ -7,8 +7,7 @@ class GameModel():
     that specific level The level can be set again at a later point to change
     the current level."""
     def __init__(self):
-        """Initialise  all class properties, including the level designs and
-        asset URLs. Individual sprites are represented by specific letters
+        """Individual sprites are represented by specific letters
         within the level designs. These letters are purely internal and a
         dictionary is provided to enumerate sprite names against their
         internal representations."""
