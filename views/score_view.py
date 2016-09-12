@@ -24,7 +24,7 @@ class ScoreManager():
         self.time = 5
 
     def notify_event(self, event):
-        """ Check if the event matches the Level End event and if so check if 
+        """Check if the event matches the Level End event and if so check if 
         the player's score is a high score."""
         if event == ["CHARACTER_AT_END"]:
             self.startTime = (pygame.time.get_ticks()/1000)

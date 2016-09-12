@@ -1,16 +1,14 @@
-# Import all the relevant libraries, including pygame and the necessary views
 import pygame
 from views import level_view as PrimaryView
 
 class GameView():
-    """This class generates the entire game and spawns subviews for each
-    individual level as the player enters the corresponding level. The class
-    is responsible for the overall control flow of the game views, ordering 
-    of levels, display of splash screens and game over screens."""
+    """Generates the game and spawns subviews for individual levels as the 
+    player enters the corresponding level. Responsible for the overall control 
+    flow of the game views, ordering of levels, display of splash screens and game over screens."""
 
     def __init__(self, clock, model, controller, eventManager):
-        """Initialise the game view properties and bind the model instance,
-        controller instance, clock and Event Manager to the game view."""
+        """Binds the model instance, controller instance, clock and Event 
+        Manager to the game view."""
         # Bind Event Manager controller, level view and clock to object
         self.eventManager = eventManager
         self.model = model
@@ -20,7 +18,7 @@ class GameView():
         # Register as as subscriber to the Event Manager
         self.eventManager = eventManager
         self.eventManager.register_listener(self)
-        # Initialise properties for start of game
+        # Initialise start
         self.levelRunning = True
         self.firstRun = 0
         self.systemRunning = True
@@ -28,11 +26,8 @@ class GameView():
         self.gameOver = False
 
     def generate_whole_game(self):
-        """Method responsible for genrating each level of game in correct 
-        order and for controlling the flow of levels, splash screen display
-        and game over screen display."""
-        # Cause the game to loop back to its first menu by invoking this
-        # method from itself
+        """Generates each level of game in correct order. Controls flow of 
+        levels, splash screen display and game over screen display."""
         while self.systemRunning:
             # For each level described by the level model, if the system is
             # running set the level number and initialise the level
@@ -43,7 +38,7 @@ class GameView():
                     # a game over event
                     self.eventManager.currentEvent = None
                     # Local variable to define if the level should be
-                    # restarted afer a game over event
+                    # restarted after a game over event
                     start = True
                     while self.gameOver or start:
                         # Reset all the class properties and local variables
@@ -55,7 +50,7 @@ class GameView():
                         self.firstRun = 0
                         # Set the current view to the current level's view
                         self.view = PrimaryView.PrimaryView(self.model, self.eventManager)
-                        # Private method to genrate the whole level inside a
+                        # Private method to generate the whole level inside a
                         # running loop to allow frames to repeat
                         self._create_current_level_loop()
             # When the game has finished, let the player enjoy looking at 
@@ -64,7 +59,7 @@ class GameView():
                 pygame.time.delay(20000)
 
     def notify_event(self, event):
-        """Method required by Event Manager to pass events to this class. 
+        """Required by Event Manager to pass events to this class. 
         Check if the event is a level end event or level complete event and 
         set this object instance's levelComplete property to true if it is."""
         if ((event == self.model.levelEndEvent or
@@ -74,11 +69,9 @@ class GameView():
                 self.eventManager.event_clear(event)
 
     def _create_current_level_loop(self):
-        """Private method to generate a running loop for the current level.
+        """Generate a running loop for the current level.
         This allows the level to continuously iterate through recalculated 
         frames until the level is finished or a game over event is fired."""
-        # While the level itself is running and the user hasn't exited 
-        # the whole game
         while self.levelRunning and self.systemRunning:
             # Listen for the termination event to break the while loop
             self._listen_for_level_kill_event()
@@ -109,18 +102,18 @@ class GameView():
                 self.levelRunning = False
 
     def _listen_for_level_kill_event(self):
-        """Private method to listen for kill events. Changes the object 
-        instance property levelRunning to false if a kill event is found."""
+        """Listens for kill events. Changes the object instance property 
+        levelRunning to false if a kill event is found."""
         if self.levelComplete:
             self.levelRunning = False
 
     def _top_level_event_handling(self):
-        """Private method which acts as a bypass to the controller for the 
-        keyboard escape key. This is useful as the controller can be slow at 
-        allowing events to be propagated and can allow individual level 
-        sub-views to handle events before the outermost view. This method 
-        is ONLY for the escape key, no other control events should be caught 
-        here - they are the responsibility of the Controller module."""
+        """Allows bypass of controller for the keyboard escape key. This is 
+        useful as the controller can be slow at allowing events to be propagated 
+        and can allow individual level sub-views to handle events before the 
+        outermost view. This method is ONLY for the escape key, no other 
+        control events should be caught here - they are the responsibility of 
+        the Controller module."""
         for event in pygame.event.get():
             # Check if a quit event or escape key event is in the pygame event
             # queue and set systemRunning to false if they are
