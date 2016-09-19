@@ -8,17 +8,15 @@ from views import score_view as ScoreManager
 from time import time as timer
 
 class PrimaryView():
-    """This class is responsible for generating the current level view. 
-    Several properties are available to assign 'Game Over', 'Pause Game' and 
-    'Current Score' to etc. The class is responsible for generating all 
-    sub-views within the level, including the primary character, platform 
-    objects, background objects and enemy sprites."""
+    """Generates the current level view. Several properties are available to 
+    assign 'Game Over', 'Pause Game' and 'Current Score' to etc. The class is 
+    responsible for generating all sub-views within the level, including the 
+    primary character, platform objects, background objects and enemy sprites."""
 
     def __init__(self, model, eventManager):
-        """Initialise the outer level view. Bind the Event Manager to the 
-        instance and register to subscribe to events posted. Assign the model
-        instance to the view and define and initialise the basic properties 
-        of the outer view. Additionally spawn all the necessary sub-views for 
+        """Initialise the outer level view. Assigns the model
+        instance to the view and defines and initialises the basic properties 
+        of the outer view. Additionally spawns all the necessary sub-views for 
         the character, platform and enemy sprites."""
         # Bind the Event Manager to the instance and register as a subscriber        
         self.eventManager = eventManager
