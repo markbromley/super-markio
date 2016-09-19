@@ -1,4 +1,3 @@
-# Import all the relevant libraries, including pygame and all the necessary sub-views
 import pygame
 from views import sprite_views as Sprites
 from views import sprite_groups_view as SpriteGroups

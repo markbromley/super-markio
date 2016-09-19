@@ -1,27 +1,24 @@
-# Import all the relevant libraries
 import pygame
 from easypg.sprites import Sprite
 from random import randint
 
 class Markio(Sprite):
-    """This class represents the Markio character (the character the player 
-    enters the game through). This is the primary game character and the class 
-    contains methods for manipulating position, applying gravity, changing
+    """Represents the Markio character. This is the primary game character -
+    allows for manipulating position, applying gravity, changing
     sprite sequence, jumping, dying and checking interaction with other sprites."""
 
     def __init__(self, screen, eventManager, levelBlocks):
-        """Initialise the class properties. Bind the screen, Event Manager
-        and level block positions to the instance and add a dictionary to 
-        enumerate character actions to class methods. Additionally initialise
-        variables and assign initial values."""
-        # Below dictionary acts as an image store for the sprite graphics
+        """Bind the screen, Event Manager and level block positions to the 
+        instance and add a dictionary to enumerate character actions to class 
+        methods."""
+        # Image store for the sprite graphics
         self.images = {}
-        # Below activates the super class initialisation method
+        # Activate the super class initialisation method
         super().__init__(screen, './assets/images/dinosaur', state = 'run', direction='e')
         # Bind the Event Manager to this class and subscribe as a listener
         self.eventManager = eventManager
         self.eventManager.register_listener(self)
-        # Below list used to store incoming notifications from the Event Manager
+        # Store incoming notifications from the Event Manager
         self.inComingNotification = []
         # Bind the screen to this class
         self.screen = screen
@@ -55,8 +52,7 @@ class Markio(Sprite):
         # End of initialisation method
 
     def notify_event(self, event):
-        """Method required by Event Manager to pass events to this class. 
-        Check if the event exists and assign it to the inComingNotification 
+        """Check if the event exists and assign it to the inComingNotification 
         property."""
         if event:
             self.inComingNotification = event
