@@ -58,15 +58,15 @@ class Markio(Sprite):
             self.inComingNotification = event
 
     def hit_enemy(self):
-        """Method to specify that the character has been hit by an enemy 
+        """Specifies that the character has been hit by an enemy 
         sprite. Allows appropriate action to be taken."""
-        # Below clear the Event Manager, to allow new events to be posted
+        # Clear the Event Manager, to allow new events to be posted
         self.eventManager.event_clear(self.inComingNotification)
         # Post a new event to say this character is dead
         self.eventManager.post(["CHARACTER_DEAD"])
 
     def won_level(self):
-        """Method to handle when the player reaches and wins the end of the 
+        """Handles when the player reaches and wins the end of the 
         level. Sets the character atEnd property to true."""
         self.atEnd = True
         # Below clear the Event Manager, to allow new events to be posted
@@ -76,7 +76,7 @@ class Markio(Sprite):
         self.eventManager.event_clear(self.inComingNotification)
  
     def new_collision(self):
-        """Method to detect if the sprite will collide with any of the level 
+        """Detects if the sprite will collide with any of the level 
         bricks during its next movement. Uses characters internal representation 
         of block positions to calculate if there will be a collision. """
         for blockTuple in self.levelBlocks:
