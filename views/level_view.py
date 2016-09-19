@@ -124,8 +124,8 @@ class PrimaryView():
                                                    self.eventManager)
 
     def activate_running_loop(self, firstRun, showEndScreen):
-        """Method to activate the loop in which the level will refresh. This 
-        will initially display the start scren, continuously check for 'game Over',
+        """Activates the loop in which the level will refresh. This 
+        initially displays the start scren, continuously check for 'game Over',
         'Win' and 'Pause' events and continue to refresh the display at the 
         given interval otherwise. The method returns the counter variable at 
         the end of each iteration, to state where it is within the loop. A 
@@ -171,15 +171,14 @@ class PrimaryView():
         return firstRun
 
     def game_over(self):
-        """Method to perform 'Game Over' functions, primarily displaying the 
+        """Performs 'Game Over' functions, primarily displaying the 
         'Game Over' image on the game window screen."""
         # Display image
         bg = self.model.gameOverImage
         self._display_game_image(bg)
 
     def notify_event(self, event):
-        """Method required by all classes subscribing to the Event Manager 
-        for events. Listens for the 'Game Pause' event and 'Game Over' event 
+        """Listens for the 'Game Pause' event and 'Game Over' event 
         and invokes corresponding methods as appropriate."""
         # Check for game paused event 
         if event == ["GAME_PAUSE"]:
@@ -206,8 +205,8 @@ class PrimaryView():
             self.eventManager.event_clear(event)
 
     def _display_game_image(self, imUrl):
-        """Private method to display an image from a given image url and blit
-        it to the game screen. This method resizes the image to fill the screen 
+        """Displays an image from a given image url and blits
+        it to the game screen. Resizes the image to fill the screen 
         and attaches it directly to the game window."""
         # Load image, convert, transform and blit
         img = pygame.image.load(imUrl)
@@ -216,30 +215,27 @@ class PrimaryView():
         self.screen.blit(img,(0,0))
 
     def _display_game_text(self, text, font, fontSize, position):
-        """Private method to display a give string in a given font at a given 
-        position and blit it on to the game screen. This emthod automatically 
+        """Displays a given string in a given font at a given 
+        position and blits it on to the game screen. Automatically 
         sets colour."""
         font = pygame.font.Font(font, fontSize)
         txt = font.render(text,True,(0,0,0))
         self.screen.blit(txt, position)
 
     def _show_start_screen(self):
-        """Private method to show the current level's Splash screen image and 
-        blit it to the game window. Acts as a wrapper to other internal 
+        """Shows the current level's Splash screen image and 
+        blits it to the game window. Acts as a wrapper to other internal 
         methods."""
         bg = self.model.get_level_start_image()
         self._display_game_image(bg)
 
     def _show_high_scores(self):
-        """Private method to display a list of the high scores for the current
-        level and blit the list to a predefined position on the game window
+        """Displays a list of the high scores for the current
+        level and blits the list to a predefined position on the game window
         screen. Uses internal methods to retrieve the high scores."""
-        # Get the current high scores for the current level
         self._get_high_scores()
-        # Initialise a counter to zero
         i = 0
         # For each high score display it in a lower position on the screen 
-        # i.e. in a vertical list
         for highScore in self.highScores:
             i += 60
             self._display_game_text('High Score ' +str(int(i/60)) +': ' + str(highScore),
@@ -248,18 +244,14 @@ class PrimaryView():
                                     (20,i))
 
     def _get_high_scores(self):
-        """Private method to open the corresponding high score file for this 
-        level and retrieve the contents before assigning to the highScores 
-        property."""
-        # Wrap in a try statement in case the file can't be found, if it can't 
+        """Opens the corresponding high score file for this 
+        level and retrieves the contents before assigning."""
+        # If file can't be found...
         # ignore the problem, because the default high scores of zero will be 
         # used instead.
         try:
-            # Get the file name for this level
             fileName = self.model.get_level_score_url()
-            # Use wit hto properly ahndle file closing when finished
             with open(fileName, 'r') as scoreFile:
-                # Assign an array of scores to the highScores property
                 self.highScores = scoreFile.readlines()
         except Exception:
             # Ignore any exceptions and continue. It isn't worth stopping 
@@ -267,26 +259,24 @@ class PrimaryView():
             pass
 
     def _puase_game(self):
-        """Private method to display the pause game image and perform any
+        """Displays the pause game image and performs any
         other actions for pausing the level."""
         # Display pause image
         bg = self.model.pauseImage
         self._display_game_image(bg)
 
     def _show_end_screen(self):
-        """Private method to display the 'Game Won' screen with a corresponding 
+        """Displays the 'Game Won' screen with a corresponding 
         message to congratulate the player if they have generated a new high 
         score for the level."""
-        # Get the current high scores
         self._get_high_scores()
         # Display the game won graphic over the entire screen
         bg = self.model.get_level_end_image()
         self._display_game_image(bg)
-        # For each current high score, check to see if the player has beaten 
-        # it, if so, show a congratulation message to them
+        # Check the current high score and display congratulation message if
+        # appropriate
         for highScore in self.highScores:
             if self.scoreManager.score > int(highScore):
-                # Generate and display the text on the screen
                 self._display_game_text('New High Score ' + str(self.scoreManager.score),
                                     './assets/fonts/font_1.ttf',
                                     20,
