@@ -85,11 +85,11 @@ class Markio(Sprite):
         return False
 
     def _get_char_bottom_position(self):
-        """Private method to get the character's bottom position"""
+        """Gets the character's bottom position"""
         return self.rect.bottom
 
     def _get_char_right_position(self):
-        """Private method to get the character's right position"""
+        """Gets the character's right position"""
         return self.rect.right
 
 
