@@ -12,20 +12,6 @@ Dependencies:
 - Python3 
 - Tested in Ubuntu 12.
 
-The directory tree structure for the game is as follows:
-
--Super Markio
-    -assets
-        -audio
-        -images
-        -fonts
-    -models
-        -high_scores
-    -views
-    -controllers
-    -screenshots
-
-
 ## Game Background
 
 A fun implementation of an old classic with a few twists (Markio is a dinosuar. Live with it.).
